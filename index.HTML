@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PAGINA OFICIAL JF9 | Juan Felipe Silva Ortiz</title>
+  <meta name="description" content="Landing institucional del Proyecto Deportivo JF9. Información, transparencia, patrocinios y medios de aporte." />
+
+  <style>
+    :root{
+      --bg:#f4f6ff;
+      --card:#ffffff;
+      --primary:#1e88e5;
+      --primary-dark:#1565c0;
+      --primary-soft:#e3f2fd;
+      --accent:#ffb300;
+      --accent-soft:#fff8e1;
+      --text-main:#1f2933;
+      --text-soft:#5f6c80;
+      --radius-lg:18px;
+      --radius-md:14px;
+      --shadow-soft:0 10px 30px rgba(15,23,42,.08);
+
+      --max: 1100px;
+      --line: rgba(15,27,45,.14);
+      --surface: #ffffff;
+      --muted: var(--text-soft);
+      --ink: var(--text-main);
+      --radius2: var(--radius-lg);
+      --shadow: var(--shadow-soft);
+      --accent2: #34d399;
+      --accent3: #d1b64a;
+
+      --wa-safe-bottom: 92px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.45;
+      padding-bottom: var(--wa-safe-bottom);
+      overflow-x: hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 24px; }
+
+    /* ========================
+       VIDEO FULL WIDTH (TOP / BOTTOM)
+    ======================== */
+    .videoBlock{
+      width: 100%;
+      background:#000;
+    }
+    .videoInner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .videoFull{
+      width: 100%;
+      height: auto;
+      display:block;
+      border-radius: 16px;
+      background:#000;
+      object-fit: cover;
+      aspect-ratio: 16 / 9;
+      max-height: 88vh;
+    }
+
+    .videoTop{
+      border-radius: 0;
+      aspect-ratio: 9 / 16;
+      max-height: 92vh;
+    }
+    @media (min-width: 900px){
+      .videoTop{
+        aspect-ratio: 16 / 9;
+        max-height: 92vh;
+      }
+    }
+
+    .videoOverlay{
+      position: absolute;
+      inset: 0;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      padding: 18px 14px;
+      pointer-events:none;
+      background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0));
+    }
+    .videoOverlay .label{
+      max-width: var(--max);
+      width:100%;
+      color:#fff;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: .2px;
+      text-shadow: 0 8px 24px rgba(0,0,0,.45);
+      padding: 0 10px;
+    }
+
+    /* Top bar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(246,248,251,.86);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar .inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px 24px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      min-width: 0;
+    }
+    .brand span{ white-space: nowrap; }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .nav{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav a{
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
+    .nav a:hover{ background:#EEF3FF; color: var(--ink); }
+
+    @media (max-width: 920px){
+      .nav{ display:none; }
+      .brand span{ white-space: normal; }
+      .topbar .inner{ gap: 10px; }
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      font-weight: 750;
+      cursor: pointer;
+      transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+      white-space: nowrap;
+    }
+    .btn:hover{ box-shadow: var(--shadow); transform: translateY(-1px); }
+    .btn.primary{
+      background: linear-gradient(180deg, #2A7BFF, var(--accent));
+      color:#fff;
+      border-color: rgba(31,111,235,.25);
+    }
+    .btn.success{
+      background: linear-gradient(180deg, #1FAE73, var(--accent2));
+      color:#fff;
+      border-color: rgba(27,138,90,.25);
+    }
+    .btn.ghost{ background: transparent; }
+
+    /* Hero */
+    .hero{ padding: 34px 0 18px; }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    @media (max-width: 920px){
+      .heroGrid{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      min-width: 0;
+    }
+    .heroMain{
+      padding: 26px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .heroMain:before{
+      content:"";
+      position:absolute;
+      inset:-120px -120px auto auto;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle at 30% 30%, rgba(31,111,235,.20), rgba(31,111,235,0) 60%);
+      pointer-events:none;
+    }
+    .heroMain:after{
+      content:"";
+      position:absolute;
+      inset:auto auto -120px -120px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle at 70% 40%, rgba(27,138,90,.18), rgba(27,138,90,0) 62%);
+      pointer-events:none;
+    }
+    .kicker{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    h1{
+      margin: 0 0 10px;
+      font-size: 34px;
+      line-height: 1.12;
+      letter-spacing: -0.5px;
+      word-break: break-word;
+    }
+    .subtitle{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 15.5px;
+      max-width: 60ch;
+    }
+    .quote{
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px dashed rgba(201,162,39,.45);
+      background: rgba(201,162,39,.08);
+      font-weight: 750;
+      color: #2B2B2B;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .ctaRow{ display:flex; gap:10px; flex-wrap: wrap; margin-top: 14px; }
+    .miniRow{
+      display:flex;
+      flex-wrap: wrap;
+      gap:10px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #F9FBFF;
+    }
+
+    /* Side summary */
+    .heroSide{ padding: 18px; }
+    .sideTitle{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 10px;
+    }
+    .sideTitle h3{ margin:0; font-size: 15px; }
+    .list{
+      display:grid;
+      gap: 10px;
+      margin: 10px 0 0;
+    }
+    .li{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #FBFCFF;
+      min-width: 0;
+    }
+    .li b{ display:block; margin-bottom: 2px; }
+    .li span{ color: var(--muted); font-size: 13px; }
+    .icon{ width:22px; height:22px; flex:0 0 22px; color: var(--accent); }
+
+    /* Sections */
+    section{ padding: 18px 0; }
+    .sectionHeader{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    h2{ margin:0; font-size:22px; letter-spacing:-0.2px; }
+    .hint{ color: var(--muted); font-weight: 650; font-size: 13px; max-width: 70ch; }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 860px){ .grid2{ grid-template-columns: 1fr; } }
+
+    .box{
+      padding: 18px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      min-width: 0;
+    }
+    .box h3{ margin:0 0 8px; font-size: 16px; }
+    .box p{ margin: 0 0 10px; color: var(--muted); }
+
+    .kv{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 520px){ .kv{ grid-template-columns: 1fr; } }
+    .kv .item{
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #FBFCFF;
+      min-width: 0;
+      word-break: break-word;
+    }
+    .kv .item b{ display:block; font-size: 12.5px; color: var(--muted); }
+    .kv .item span{ display:block; font-weight: 800; margin-top: 2px; }
+
+    /* Timeline */
+    .timeline{ display:grid; gap:12px; }
+    .step{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      min-width: 0;
+    }
+    .num{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 900;
+      color:#fff;
+      background: linear-gradient(180deg, #2A7BFF, var(--accent));
+      flex: 0 0 34px;
+    }
+    .step h4{ margin:0 0 4px; font-size:15px; }
+    .step p{ margin:0; color: var(--muted); }
+
+    /* Table */
+    table{
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      display: table;
+    }
+    th, td{
+      padding: 12px 12px;
+      text-align:left;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+      vertical-align: top;
+    }
+    th{
+      color: var(--muted);
+      font-size: 12.5px;
+      letter-spacing: .2px;
+      background:#FBFCFF;
+      font-weight: 800;
+    }
+    tr:last-child td{ border-bottom:none; }
+    td:last-child{ font-weight:900; }
+    .totalRow td{ background: rgba(31,111,235,.06); }
+
+    /* Sponsorship cards */
+    .plans{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 980px){ .plans{ grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px){ .plans{ grid-template-columns: 1fr; } }
+
+    .plan{
+      padding: 18px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+    }
+    .plan .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 12px;
+      border: 1px solid var(--line);
+      background:#FBFCFF;
+      color: var(--muted);
+    }
+    .plan h3{ margin: 10px 0 6px; font-size: 16px; }
+    .price{ font-size: 22px; font-weight: 950; margin: 0 0 10px; letter-spacing: -0.2px; }
+    .plan ul{ margin:0; padding-left:18px; color: var(--muted); }
+    .plan li{ margin:6px 0; }
+    .plan .mini{ margin-top:10px; font-size:12.5px; color: var(--muted); font-weight:700; }
+
+    .plan.highlight{
+      border-color: rgba(201,162,39,.45);
+      box-shadow: 0 16px 32px rgba(201,162,39,.12);
+    }
+    .plan.highlight:before{
+      content:"";
+      position:absolute;
+      inset:-120px -140px auto auto;
+      width:260px; height:260px;
+      background: radial-gradient(circle at 30% 30%, rgba(201,162,39,.24), rgba(201,162,39,0) 65%);
+      pointer-events:none;
+    }
+
+    /* ===== COLORES POR PLAN ===== */
+    .plan.cristal{
+      background: linear-gradient(180deg, rgba(56,189,248,.12), #ffffff);
+      border-color: rgba(56,189,248,.35);
+    }
+    .plan.cristal .tag{
+      background: rgba(56,189,248,.14);
+      border-color: rgba(56,189,248,.35);
+      color: #075985;
+    }
+
+    .plan.bronce{
+      background: linear-gradient(180deg, rgba(180,83,9,.10), #ffffff);
+      border-color: rgba(180,83,9,.30);
+    }
+    .plan.bronce .tag{
+      background: rgba(180,83,9,.12);
+      border-color: rgba(180,83,9,.30);
+      color: #7c2d12;
+    }
+
+    .plan.plata{
+      background: linear-gradient(180deg, rgba(148,163,184,.16), #ffffff);
+      border-color: rgba(148,163,184,.45);
+    }
+    .plan.plata .tag{
+      background: rgba(148,163,184,.18);
+      border-color: rgba(148,163,184,.45);
+      color: #334155;
+    }
+
+    .plan.oro{
+      background: linear-gradient(180deg, rgba(245,158,11,.14), #ffffff);
+      border-color: rgba(245,158,11,.40);
+      box-shadow: 0 16px 32px rgba(245,158,11,.12);
+    }
+    .plan.oro .tag{
+      background: rgba(245,158,11,.16);
+      border-color: rgba(245,158,11,.40);
+      color: #78350f;
+    }
+
+    /* Disclosure */
+    .disclosure{
+      padding: 14px 16px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(15,27,45,.14);
+      background: rgba(15,27,45,.03);
+      color: var(--muted);
+      font-size: 12.5px;
+      font-weight: 650;
+      word-break: break-word;
+    }
+
+    /* Footer */
+    footer{
+      padding: 26px 0 46px;
+      border-top: 1px solid var(--line);
+      margin-top: 16px;
+    }
+    .footerGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items:start;
+    }
+    @media (max-width: 820px){ .footerGrid{ grid-template-columns: 1fr; } }
+    .contactBox{
+      padding: 16px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      min-width: 0;
+    }
+
+    /* WhatsApp floating */
+    .waFloat{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 50;
+    }
+    .waBtn{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #1FAE73, var(--accent2));
+      color:#fff;
+      font-weight: 900;
+      box-shadow: 0 16px 28px rgba(27,138,90,.22);
+      border: 1px solid rgba(27,138,90,.35);
+    }
+    .waBtn small{
+      display:block;
+      opacity: .92;
+      font-weight: 750;
+    }
+    .waIcon{ width:20px; height:20px; }
+
+    .muted{ color: var(--muted); }
+    .sep{ height: 1px; background: var(--line); margin: 14px 0; }
+
+    /* ========================
+       NUEVO: BANNERS / LOGOS PATROCINADORES OFICIALES
+    ======================== */
+    .sponsors{
+      margin-top: 16px;
+      padding: 24px 0 10px;
+    }
+    .sponsorsTitle{
+      text-align:center;
+      margin: 0 0 6px;
+      font-size: 28px;
+      letter-spacing: -0.4px;
+      font-weight: 950;
+      color: var(--ink);
+    }
+    .sponsorsSub{
+      text-align:center;
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 13.5px;
+    }
+    .sponsorWall{
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+    .sponsorGrid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+    @media (max-width: 980px){ .sponsorGrid{ grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 720px){ .sponsorGrid{ grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 420px){ .sponsorGrid{ grid-template-columns: 1fr; } }
+
+    sponsorCard{
+  border: 1px dashed rgba(15,27,45,.22);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(31,111,235,.06), rgba(255,255,255,1));
+  padding: 10px;              /* un poco de margen para que no “pegue” al borde */
+  height: 110px;              /* alto fijo para uniformidad */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+}
+
+@media (max-width: 520px){
+  .sponsorCard{ height: 90px; padding: 8px; }
+}
+
+.sponsorCard img{
+  width: 100%;
+  height: 100%;
+  display:block;
+  object-fit: contain;        /* ✅ muestra TODO el logo */
+  object-position: center;
+  max-width: 100%;            /* mantiene límites correctos */
+  max-height: 100%;
+  filter: none;
+}
+/* ===== GALERÍA (solo para llenar el espacio en blanco del panel izquierdo) ===== */
+.heroGallery{
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 920px){
+  .heroGallery{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px){
+  .heroGallery{ grid-template-columns: 1fr; }
+}
+
+.heroGallery .gItem{
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #FBFCFF;
+  aspect-ratio: 1 / 1;
+}
+
+.heroGallery .gItem img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- VIDEO GIGANTE ARRIBA -->
+  <div class="videoBlock" id="video-intro">
+    <div style="position:relative;">
+      <video class="videoFull videoTop" autoplay muted playsinline loop preload="metadata">
+        <source src="media/intro.mp4" type="video/mp4" />
+        Tu navegador no soporta video HTML5.
+      </video>
+      <div class="videoOverlay">
+        <div class="label">PAGINA OFICIAL JF9 · ASCENSO EXPERIENCIA INTERNACIONAL 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="inner">
+      <div class="brand" aria-label="Marca">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2l8.5 5v10L12 22 3.5 17V7L12 2z" stroke="currentColor" stroke-width="2" />
+          <path d="M12 22V12" stroke="currentColor" stroke-width="2"/>
+          <path d="M20.5 7L12 12 3.5 7" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span>Proyecto Deportivo <span style="color:var(--accent);">JF9</span></span>
+        <span class="badge">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Información institucional
+        </span>
+      </div>
+
+      <nav class="nav" aria-label="Navegación">
+        <a href="#quien">¿Quién es?</a>
+        <a href="#programa">Programa Europa</a>
+        <a href="#inversion">Inversión</a>
+        <a href="#patrocinios">Patrocinios</a>
+        <a href="#fondo">Bolsa millonaria</a>
+        <a href="#pago">Medios de pago</a>
+      </nav>
+
+      <div style="display:flex; gap:10px; align-items:center;">
+        <a class="btn ghost" href="#patrocinios">Ver opciones</a>
+        <a class="btn primary" href="#pago">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="color:#fff;">
+            <path d="M20 7H4a2 2 0 0 0-2 2v7a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V9a2 2 0 0 0-2-2z" stroke="currentColor" stroke-width="2"/>
+            <path d="M2 10h20" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          Apoyar ahora
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <!-- HERO -->
+    <div class="hero" id="inicio">
+      <div class="heroGrid">
+        <div class="card heroMain">
+          <div class="kicker">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3l2.1 6.5H21l-5.3 3.9 2 6.6L12 16.7 6.3 20l2-6.6L3 9.5h6.9L12 3z" stroke="currentColor" stroke-width="2" />
+            </svg>
+            Formación y comprommiso.
+          </div>
+          <h1>Juan Felipe Silva Ortiz (JF9)</h1>
+          <p class="subtitle">
+           Esta página tiene como propósito que las personas y patrocinadores conozcan a profundidad el Proyecto JF9. Aquí encontrarás de forma clara y transparente el                         destino de las donaciones, los objetivos, los planes de patrocinio y toda la información esencial del proceso.
+
+Si eres patrocinador, puedes enviarnos tu logo para incorporarlo en esta página como parte del reconocimiento y visibilidad de tu apoyo.
+          </p>
+
+          <div class="quote">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="color:var(--accent3);">
+              <path d="M7 10h4v10H5V12a6 6 0 0 1 6-6h0v4a2 2 0 0 0-2 2v0z" stroke="currentColor" stroke-width="2"/>
+              <path d="M17 10h4v10h-6V12a6 6 0 0 1 6-6h0v4a2 2 0 0 0-2 2v0z" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            “Y aunque tu principio haya sido pequeño,Tu postrer estado será muy grande” ¡Es una Promesa!.
+          </div>
+
+          <div class="ctaRow">
+            <a class="btn success" href="#pago">Realizar aporte</a>
+            <a class="btn" href="#programa">Ver programa en Europa</a>
+            <a class="btn" href="#inversion">Ver inversión</a>
+          </div>
+
+          <div class="miniRow">
+            <span class="pill">Dossier institucional disponible</span>
+            <span class="pill">Transparencia y trazabilidad</span>
+          </div>
+        </div>
+       <div class="heroGallery">
+         <div class="gItem"><img src="imagenes/foto1.jpg" alt="Foto 1"></div>
+            <div class="gItem"><img src="imagenes/foto2.jpg" alt="Foto 2"></div>
+              <div class="gItem"><img src="imagenes/foto3.jpg" alt="Foto 3"></div>
+             <div class="gItem"><img src="imagenes/foto4.jpg" alt="Foto 4"></div>
+            <div class="gItem"><img src="imagenes/foto5.jpg" alt="Foto 5"></div>
+          <div class="gItem"><img src="imagenes/foto6.jpg" alt="Foto 6"></div>
+          </div>
+           <div style="margin-top:14px;">
+ 
+  <aside class="card heroSide" aria-label="Resumen rápido">
+          <div class="sideTitle">
+            <h3>Resumen ejecutivo</h3>
+            <span class="badge">2026</span>
+          </div>
+           <div class="list">
+            <div class="li">
+              <div>
+                <b>Formación sólida</b>
+                <span>Más de 7 años de preparación deportiva, disciplina y rendimiento académico.</span>
+              </div>
+            </div>
+
+            <div class="li">
+              <div>
+                <b>Unidades de entrenamiento</b>
+                <span>1400 se entienden como unidades de formación, donde cada unidad equivale a 60 minutos. Es decir, en tiempo total estamos hablando de 84.000 minutos de formación (equivalentes a 1.400 horas), lo cual representa un volumen de entrenamiento sólido y altamente significativo para un proceso de desarrollo y alto rendimiento.</span>
+              </div>
+            </div>
+
+            <div class="li">
+              <div>
+                <b>habilidades técnicas y tácticas.</b>
+                <span>Habilidades blandas liderazgo, trabajo en equipo, Entrenamiento neurodeportivo por Metodo Zitro, Velocidad, control, Vision de juego, biotipo idoneo, facilidad de adaptacion,.</span>
+              </div>
+            </div>
+
+            <div class="li">
+              <div>
+                <b>Competencias</b>
+                <span>Participación activa en torneos locales y regionales con el Club Cali Leones, incluyendo: Liga Start, Liga Next Generation, Copa Phex, Copa Huberto Arias (1.ª y 2.ª edición) y la Liga del Valle 2025, torneo en el que el equipo se consagró campeón.
+Posición de juego: Extremo izquierdo.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sep"></div>
+          <div class="disclosure">
+            <b>Nota de transparencia:</b>Juan Felipe Silva se ha formado bajo el principio tripartito del ser, lo que le ha permitido, como deportista, comprender la importancia de una formación integral: física, mental y espiritual. Este enfoque se refleja tanto en su desarrollo deportivo como en sus compromisos escolares, donde ha mantenido de manera constante altos estándares de calidad y excelencia académica. En el campo deportivo destaca su resiliencia, lucha  y capacidad evolutiva cuando algo en el juego no sale bien, buscando siempre mejorar, con un amplio potencial de crecimiento dispuesto para trabajar en su formacion.
+          </div>
+        </aside>
+      </div>
+    </div>
+<div class="heroGallery">
+         <div class="gItem"><img src="imagenes/foto7.jpg" alt="Foto 7"></div>
+            <div class="gItem"><img src="imagenes/foto2.jpg" alt="Foto 8"></div>
+              <div class="gItem"><img src="imagenes/foto9.jpg" alt="Foto 9"></div>
+        </div>
+
+    <!-- QUIÉN ES -->
+    <section id="quien">
+      <div class="sectionHeader">
+        <div>
+          <h2>¿Quién es Juan Felipe Silva Ortiz?</h2>
+          <div class="hint">Perfil integral: formación, disciplina, rendimiento y responsabilidad personal.</div>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="box">
+          <h3>Perfil deportivo y académico</h3>
+          <p>
+            Juan Felipe es un joven futbolista colombiano con más de <b>7 años</b> de formación deportiva, caracterizado por
+            disciplina y constancia en su entrenamiento, excelente rendimiento académico, alta responsabilidad personal y
+            talento futbolístico comprobado.
+          </p>
+          <div class="kv">
+            <div class="item"><b>Formación</b><span>7+ años</span></div>
+            <div class="item"><b>Enfoque</b><span>Disciplina y constancia</span></div>
+            <div class="item"><b>Desempeño</b><span>Rendimiento académico</span></div>
+            <div class="item"><b>Objetivo</b><span>Proyección internacional</span></div>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>Oportunidad actual</h3>
+          <p>
+          
+          </p>
+          <div class="li" style="margin-top:12px;">
+            <div>
+              <b>CAPACIDAD DISPONIBLE</b>
+              <span> JF9 sin duda alguna es un deportista altamente adaptable con capacidades fisicas extraordinarias, listo para adaptarse a el entorno deportivo que lo requiera, sin que tenga que negociar sus valores y sus principios.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMA EUROPA 2026 -->
+    <section id="programa">
+      <div class="sectionHeader">
+        <div>
+          <h2>Programa internacional en Europa</h2>
+          <div class="hint">Detalles operativos del proceso (duración, metodología, residencia y supervisión).</div>
+        </div>
+      </div>
+
+      <div class="box">
+        <h3>Características principales</h3>
+        <p class="muted">
+          Duración estimada: <b>agosto – noviembre de 2026 (3 meses)</b>. Residencia oficial en <b>Resort Mas Camarena</b>,
+          Bétera, Valencia. Metodología española certificada con carga lectiva de <b>25 horas semanales</b> y supervisión profesional
+          <b>24/7</b>, con visorías con clubes europeos.
+        </p>
+
+        <div class="kv">
+          <div class="item"><b>Duración</b><span>3 meses (Ago–Nov 2026)</span></div>
+          <div class="item"><b>Ubicación</b><span>Valencia, España</span></div>
+          <div class="item"><b>Carga</b><span>25 horas/semana</span></div>
+          <div class="item"><b>Incluye</b><span>Pensión completa + idiomas</span></div>
+          <div class="item"><b>Supervisión</b><span>24/7</span></div>
+          <div class="item"><b>Objetivo</b><span>Visorías profesionales</span></div>
+        </div>
+
+        <div class="sep"></div>
+        <div class="disclosure">
+          <b>En estos 3 meses sera puesto aprueba y seran los tecnicos del campo y de los demas clubes quienes decidan si continua o no en su proceso, eso sin duda alguna sera un desafio, pero no podemos dejar de lado la imprtancia de este tiempo para su formación que sin duda alguna le permitira encajar en entornos de altto rendimieno y destacar en el campo.
+        </div>
+      </div>
+    </section>
+
+    <!-- OBJETIVOS -->
+    <section id="objetivos">
+      <div class="sectionHeader">
+        <div>
+          <h2>Objetivos del proyecto</h2>
+          <div class="hint">Recaudar fondos para cubrir los costos necesarios antes y durante el proceso internacional.</div>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="box">
+          <h3>¿Para qué se recauda?</h3>
+          <p>
+            El objetivo principal es recaudar fondos para cubrir gastos de viaje, manutención, documentación y preparación,
+            asegurando un proceso ordenado y profesional.
+          </p>
+        </div>
+
+        <div class="box">
+          <h3>Proceso (fases)</h3>
+          <div class="timeline">
+            <div class="step">
+              <div class="num">1</div>
+              <div>
+                <h4>Documentación y trámites</h4>
+                <p>Carta de invitación, visa Schengen, seguro internacional y certificaciones deportivas.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num" style="background:linear-gradient(180deg,#1FAE73,var(--accent2));">2</div>
+              <div>
+                <h4>Preparación pre-viaje</h4>
+                <p>Entrenamiento intensivo, trabajo técnico, preparación mental y material audiovisual.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num" style="background:linear-gradient(180deg,#D1B64A,var(--accent3));">3</div>
+              <div>
+                <h4>Estancia y visorías en Europa</h4>
+                <p>Programa 2–3 meses, metodología europea, supervisión 24/7 y visorías con clubes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    </div>
+<div class="heroGallery">
+         <div class="gItem"><img src="imagenes/foto10.jpg" alt="Foto 10"></div>
+            <div class="gItem"><img src="imagenes/foto11.jpg" alt="Foto 11"></div>
+              <div class="gItem"><img src="imagenes/foto12.jpg" alt="Foto 12"></div>
+        </div>
+
+    <!-- INVERSIÓN -->
+    <section id="inversion">
+      <div class="sectionHeader">
+        <div>
+          <h2>Desglose de inversión</h2>
+          <div class="hint">Transparencia total en el uso de recursos (valores estimados, sujetos a variación por destino/condiciones).</div>
+        </div>
+      </div>
+
+      <table aria-label="Tabla de inversión (pendiente por completar)">
+        <thead>
+          <tr>
+            <th>Concepto</th>
+            <th>Detalle</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="3" class="muted" style="font-weight:700;">
+             Presupuesto: Preparación, gastos de publicidad,viaje, manutención, documentación, inscripción, otros.Presupuesto 10,000.Euros.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="sep"></div>
+      <div class="disclosure">
+        <b>Nota:</b>Es importante resaltar que JF9 cuenta con un equipo de apoyo integral, conformado por sus padres, familiares, amigos y profesionales, con el propósito de acompañar y respaldar su carrera deportiva y profesional.
+
+En este contexto, los fondos recaudados son responsabilidad directa del jugador y de sus tutores legales, quienes han adquirido el compromiso formal con los patrocinadores. El club al que hará parte se menciona únicamente como referencia y respaldo institucional de la información, pero no asume responsabilidad alguna sobre los recursos recaudados. Su rol se limita a garantizar el cumplimiento de los servicios y del acuerdo deportivo, una vez se hayan cumplido los compromisos económicos que hacen posible la inscripción y participación en el programa.
+      </div>
+    </section>
+
+    <!-- PATROCINIOS -->
+    <section id="patrocinios">
+      <div class="sectionHeader">
+        <div>
+          <h2>Modelos de patrocinio</h2>
+          <div class="hint">Opciones para personas y empresas. Mayor apoyo = mayor visibilidad y más combinaciones del fondo incentivo.</div>
+        </div>
+        <a class="btn" href="#pago">Realice Aquí su Aporte</a>
+      </div>
+
+      <div class="plans">
+        <!-- CRISTAL -->
+        <div class="plan cristal">
+          <span class="tag">Plan Cristal · Patrocinio personal</span>
+          <h3>Bono solidario</h3>
+          <div class="price">$50.000</div>
+          <ul>
+            <li>7 combinaciones (4 cifras)</li>
+            <li>Apoyo directo al talento deportivo colombiano</li>
+            <li>Confirmación por WhatsApp</li>
+          </ul>
+          <div class="mini"><b>Incluye:</b> 7 oportunidades de participación.</div>
+        </div>
+
+        <!-- BRONCE -->
+        <div class="plan bronce">
+          <span class="tag">Plan Bronce · Opción 1</span>
+          <h3>Patrocinador Aliado</h3>
+          <div class="price">$800.000</div>
+          <ul>
+            <li>2 menciones en redes oficiales</li>
+            <li>2 Menciónes en videos desde Europa</li>
+            <li>Asociación de marca en la camisa JF9 oficial</li>
+            <li>49 combinaciones</li>
+          </ul>
+        </div>
+
+        <!-- PLATA -->
+        <div class="plan plata">
+          <span class="tag">Plan Plata · Opción 2</span>
+          <h3>Patrocinador Proyección</h3>
+          <div class="price">$1.600.000</div>
+          <ul>
+            <li>4 menciones en redes oficiales</li>
+            <li>1 Video de gratitud donde se nombra la marca desde Europa</li>
+            <li> Asociacion Logo en camiseta JF9 OFICIAL</li>
+            <li> 98 combinaciones</li>
+          </ul>
+        </div>
+
+        <!-- ORO -->
+        <div class="plan oro highlight">
+          <span class="tag">Plan Oro · Opción 3</span>
+          <h3>Patrocinador Oficial Internacional</h3>
+          <div class="price">$2.500.000</div>
+          <ul>
+            <li>6 menciones estratégicas (antes/durante/después)</li>
+            <li>3 Nombramientos prioritarios en videos de agradecimiento desde Europa</li>
+            <li>Logo destacado en camiseta JF9 OFICIAL</li>
+            <li>Reconocimiento oficial del proyecto</li>
+            <li>140 combinaciones</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FONDO INCENTIVO -->
+    <section id="fondo Deportivo">
+      <div class="sectionHeader">
+        <div>
+          <h2>Bolsa Millonaria (fondo Deportivo) </h2>
+          <div class="hint">Incentivo a patrocinadores basado en un resultado público y verificable.</div>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="box">
+          <h3>Premio principal</h3>
+          <p>El proyecto ha constituido un fondo incentivo solidario con un premio único de:</p>
+          <div class="kv">
+            <div class="item"><b>Premio</b><span>$10.000.000 COP</span></div>
+            <div class="item"><b>Mecánica</b><span>4 cifras exactas/ varias opciones.</span></div>
+            <div class="item"><b>Referencia</b><span>Lotería de Boyacá</span></div>
+            <div class="item"><b>Asignación</b><span>Según patrocinio</span></div>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>Aclaración importante</h3>
+          <p>
+            La Bolsa Millonaria <b>no es un juego de azar</b>. Es un fondo de incentivo solidario que busca agradecer y
+            estimular la participación en el proyecto deportivo, usando un resultado público y verificable.
+          </p>
+          <div class="disclosure">
+            <b>Fechas:</b> 7 de febrero de 2026 (si se alcanza el 50% de bonos) · 28 de marzo de 2026 (fecha alterna).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGO -->
+    <section id="pago">
+      <div class="sectionHeader">
+        <div>
+          <h2>Medios de pago y confirmación</h2>
+          <div class="hint">Pago por Nequi y confirmación directa por WhatsApp (mensaje prellenado).</div>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="box">
+          <h3>Nequi</h3>
+          <p>Realiza tu aporte a:</p>
+          <div class="kv">
+            <div class="item"><b>Número Nequi</b><span>323 399 2683</span></div>
+            <div class="item"><b>Titular</b><span>Juan Felipe Silva Ortiz</span></div>
+          </div>
+          <div class="sep"></div>
+          <div class="disclosure">
+            Recomendación: conserva el comprobante y confirma el aporte por WhatsApp para recibir las combinaciones correspondientes.
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>Confirmación por WhatsApp</h3>
+          <p>Para confirmar tu aporte y recibir la asignación correspondiente, escribe al WhatsApp oficial:</p>
+          <div class="kv">
+            <div class="item"><b>WhatsApp</b><span>+57 323 399 2683</span></div>
+            <div class="item"><b>Atención</b><span>Confirmación y soporte</span></div>
+          </div>
+          <div class="ctaRow" style="margin-top:14px;">
+            <a class="btn success" id="waCta" href="#" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+            <a class="btn" href="#patrocinios">Ver patrocinios</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sep"></div>
+      <div class="disclosure">
+        <b>Participación voluntaria: Este proyecto es una iniciativa de apoyo al deporte limpio y al desarrollo del talento joven, basada en aportes libres y conscientes de personas y patrocinadores que desean respaldar un proceso formativo real.
+
+Este proyecto no constituye un juego de azar, rifa ni apuesta, ya que su finalidad principal es la financiación del proceso deportivo y formativo del jugador. Cualquier incentivo asociado se plantea únicamente como un mecanismo simbólico de reconocimiento, utilizando referencias públicas y verificables, sin que ello implique la compra de probabilidades, ni ánimo de lucro para los organizadores.
+
+Desde un punto de vista legal y ético, el aporte se entiende como una donación voluntaria, en la cual el participante conoce previamente el propósito, el destino de los recursos y las condiciones del proyecto. No existe obligación de retorno económico, ni dependencia del azar como elemento determinante, lo que lo diferencia claramente de los juegos de suerte y azar regulados por la ley, el valor que se oorga al donane es con el unico proposio de que los patrocinadores hagan sus aporte y que en retribicion y acuerdo se retribuira a quein cumpla con las reglas.
+
+Se recomienda leer detenidamente toda la información presentada antes de realizar cualquier aporte, con el fin de tomar una decisión informada, consciente y responsable..
+      </div>
+    </section>
+
+    <!-- VIDEO GIGANTE AL FINAL -->
+    <div class="videoBlock" id="video-final" style="margin-top:18px;">
+      <div class="videoInner" style="padding-bottom:18px;">
+        <video class="videoFull" controls playsinline preload="metadata">
+          <source src="media/final.mp4" type="video/mp4" />
+          Tu navegador no soporta video HTML5.
+        </video>
+      </div>
+    </div>
+
+    <!-- ✅ NUEVO: PATROCINADORES OFICIALES (BANNERS / LOGOS) -->
+    <section class="sponsors" id="patrocinadores-oficiales">
+      <h2 class="sponsorsTitle">PATROCINADORES OFICIALES</h2>
+      <p class="sponsorsSub">Gracias por creer, sembrar y construir futuro con el Proyecto JF9.</p>
+
+      <div class="sponsorCard">
+  <img src="logos/patrocinador1.png" alt="Logo Patrocinador 1"
+    onerror="this.remove();">
+          </div>
+          <<div class="sponsorCard">
+  <img src="logos/patrocinador2.png" alt="Logo Patrocinador 2"
+    onerror="this.remove();">
+</div>
+
+          <div class="sponsorCard">
+  <img src="logos/patrocinador3.png" alt="Logo Patrocinador3"
+    onerror="this.remove();">
+</div>
+        <div class="sponsorCard">
+  <img src="logos/patrocinador4.png" alt="Logo Patrocinador 4"
+    onerror="this.remove();">
+</div>
+
+          <div class="sponsorCard">
+  <img src="logos/patrocinador5.png" alt="Logo Patrocinador 5"
+    onerror="this.remove();">
+</div>
+
+         <div class="sponsorCard">
+  <img src="logos/patrocinador6.png" alt="Logo Patrocinador 6"
+    onerror="this.remove();">
+</div>
+
+          <div class="sponsorCard">
+  <img src="logos/patrocinador7.png" alt="Logo Patrocinador 7"
+    onerror="this.remove();">
+</div>
+
+          <div class="sponsorCard">
+  <img src="logos/patrocinador8.png" alt="Logo Patrocinador 8"
+    onerror="this.remove();">
+</div>
+
+          <div class="sponsorCard">
+  <img src="logos/patrocinador9.png" alt="Logo Patrocinador 9"
+    onerror="this.remove();">
+</div>
+
+        <div class="sponsorCard">
+  <img src="logos/patrocinador10.png" alt="Logo Patrocinador 10"
+    onerror="this.remove();">
+</div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footerGrid">
+        <div class="contactBox">
+          <div class="badge" style="margin-bottom:10px;">Contacto oficial</div>
+          <p class="muted" style="margin:0 0 10px;">
+            WhatsApp: <b>+57 323 399 2683</b><br/>
+            Nequi: <b>323 399 2683</b> (Juan Felipe Silva Ortiz)
+          </p>
+          <div class="ctaRow">
+            <a class="btn success" href="#" id="waFooter" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+            <a class="btn" href="#inicio">Volver arriba</a>
+          </div>
+        </div>
+
+        <div class="contactBox">
+          <div class="badge" style="margin-bottom:10px;">Transparencia</div>
+          <p class="muted" style="margin:0 0 10px;">
+            Este sitio presenta información institucional del proyecto. El objetivo principal es la recaudación de fondos para
+            cubrir gastos del proceso del jugador. La Bolsa Millonaria es un incentivo solidario basado en un resultado público
+            y verificable.
+          </p>
+          <div class="disclosure">
+            <b>Recomendación:</b> guarda tu comprobante y confirma por WhatsApp para la asignación correspondiente.
+          </div>
+        </div>
+      </div>
+
+      <p class="muted" style="margin:16px 0 0; font-size:12.5px;">
+        © <span id="year"></span> Proyecto Deportivo JF9. “Creer también es construir futuro”.
+      </p>
+    </footer>
+  </main>
+
+  <!-- WhatsApp floating bubble -->
+  <div class="waFloat" aria-label="WhatsApp flotante">
+    <a class="waBtn" id="waFloat" href="#" target="_blank" rel="noopener">
+      <svg class="waIcon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M20.5 11.8A8.6 8.6 0 0 1 12 20.4a8.6 8.6 0 0 1-4.3-1.2L3.5 20.5l1.4-4.1A8.6 8.6 0 0 1 3.6 12 8.6 8.6 0 0 1 12 3.4a8.6 8.6 0 0 1 8.5 8.4z" stroke="currentColor" stroke-width="2" style="color:#fff;"/>
+      </svg>
+      WhatsApp
+      <small>APORTE/INFORMACIÓN</small>
+    </a>
+  </div>
+
+  <script>
+    const WHATSAPP_NUMBER = "573233992683";
+    const DEFAULT_MESSAGE = "Hola, quiero apoyar el Proyecto Deportivo de Juan Felipe Silva Ortiz (JF9). Ya realicé mi aporte (o deseo aportar) y quiero confirmar mi patrocinio. ¿Me indicas el paso a paso?";
+    const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_MESSAGE)}`;
+
+    ["waCta","waFooter","waFloat"].forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) el.href = waLink;
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener("click",(e)=>{
+        const href = a.getAttribute("href");
+        if(!href || href==="#") return;
+        const target = document.querySelector(href);
+        if(!target) return;
+        e.preventDefault();
+        target.scrollIntoView({behavior:"smooth", block:"start"});
+      });
+    });
+  </script>
+</body>
+</html>
