@@ -109,7 +109,7 @@
     .topbar{
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 200;
       background: rgba(246,248,251,.86);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--line);
@@ -161,10 +161,69 @@
     }
     .nav a:hover{ background:#EEF3FF; color: var(--ink); }
 
+    /* ✅ Botón hamburguesa + menú móvil */
+    .menuBtn{
+      display:none;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 900;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .menuBtn:active{ transform: scale(.98); }
+
+    .mobileMenu{
+      display:none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      z-index: 190;
+      background: rgba(246,248,251,.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 16px 28px rgba(15,23,42,.08);
+    }
+    .mobileMenu .mmInner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px 16px 16px;
+      display:grid;
+      gap: 10px;
+    }
+    .mobileMenu a{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .mobileMenu a small{
+      color: var(--muted);
+      font-weight: 750;
+    }
+    .mobileMenu .mmRow{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 520px){
+      .mobileMenu .mmRow{ grid-template-columns: 1fr; }
+    }
+    .mobileMenu.open{ display:block; }
+
     @media (max-width: 920px){
       .nav{ display:none; }
       .brand span{ white-space: normal; }
       .topbar .inner{ gap: 10px; }
+      .menuBtn{ display:inline-flex; align-items:center; gap:8px; }
     }
 
     .btn{
@@ -193,6 +252,12 @@
       border-color: rgba(27,138,90,.25);
     }
     .btn.ghost{ background: transparent; }
+
+    /* ✅ En móvil ocultamos estos botones del header para que NO tapen */
+    .headerActions{ display:flex; gap:10px; align-items:center; }
+    @media (max-width: 920px){
+      .headerActions{ display:none; }
+    }
 
     /* Hero */
     .hero{ padding: 34px 0 18px; }
@@ -582,8 +647,39 @@
     .muted{ color: var(--muted); }
     .sep{ height: 1px; background: var(--line); margin: 14px 0; }
 
+    /* ===== GALERÍA ===== */
+    .heroGallery{
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    @media (max-width: 920px){
+      .heroGallery{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px){
+      .heroGallery{ grid-template-columns: 1fr; }
+    }
+
+    .heroGallery .gItem{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #FBFCFF;
+      aspect-ratio: 1 / 1;
+    }
+
+    .heroGallery .gItem img{
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+
     /* ========================
-       NUEVO: BANNERS / LOGOS PATROCINADORES OFICIALES
+       PATROCINADORES OFICIALES - LOGOS GIGANTES A ANCHO COMPLETO
     ======================== */
     .sponsors{
       margin-top: 16px;
@@ -604,123 +700,43 @@
       font-weight: 650;
       font-size: 13.5px;
     }
-    .sponsorWall{
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      padding: 16px;
+
+    /* ✅ Cada patrocinador en modo “banner” */
+    .sponsors .sponsorCard
+     {
+      height: 280px;      /* define el “alto” del banner */
+      padding: 10;         /* quita el borde interno para evitar blancos */
+      }
+
+    .sponsors .sponsorCard img{
+     width: auto;
+      height: 90%;       /* ahora sí llena el alto */
+     display:block;
+      object-fit: cover;  /* ✅ cubre todo, sin blancos */
+      object-position:left;
+}
+    @media (max-width: 520px){
+      .sponsors .sponsorCard img{ max-height: 220px; }
     }
-    .sponsorGrid{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      align-items: center;
-    }
-    @media (max-width: 980px){ .sponsorGrid{ grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 720px){ .sponsorGrid{ grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 420px){ .sponsorGrid{ grid-template-columns: 1fr; } }
 
-    sponsorCard{
-  border: 1px dashed rgba(15,27,45,.22);
-  border-radius: 16px;
-  background: linear-gradient(180deg, rgba(31,111,235,.06), rgba(255,255,255,1));
-  padding: 10px;              /* un poco de margen para que no “pegue” al borde */
-  height: 110px;              /* alto fijo para uniformidad */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  overflow:hidden;
-}
+    /* ===== AJUSTES SOLO PARA CELULAR ===== */
+    @media (max-width: 768px) {
+      /* Botón flotante de WhatsApp */
+      .waFloat{
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+      }
+      .waBtn{
+        width: 100%;
+        justify-content: center;
+        border-radius: 14px;
+      }
 
-@media (max-width: 520px){
-  .sponsorCard{ height: 90px; padding: 8px; }
-}
-
-.sponsorCard img{
-  width: 100%;
-  height: 100%;
-  display:block;
-  object-fit: contain;        /* ✅ muestra TODO el logo */
-  object-position: center;
-  max-width: 100%;            /* mantiene límites correctos */
-  max-height: 100%;
-  filter: none;
-}
-/* ===== GALERÍA (solo para llenar el espacio en blanco del panel izquierdo) ===== */
-.heroGallery{
-  margin-top: 14px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-@media (max-width: 920px){
-  .heroGallery{ grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 520px){
-  .heroGallery{ grid-template-columns: 1fr; }
-}
-
-.heroGallery .gItem{
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  overflow: hidden;
-  background: #FBFCFF;
-  aspect-ratio: 1 / 1;
-}
-
-.heroGallery .gItem img{
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center;
-}
-/* ===== AJUSTES SOLO PARA CELULAR ===== */
-@media (max-width: 768px) {
-
-  /* Header y botones */
-  header,
-  .topBar,
-  .headerActions {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  /* Botón Apoyar ahora */
-  .btn-primary,
-  .btn-cta,
-  button {
-    width: 100%;
-    max-width: 100%;
-    justify-content: center;
-  }
-
-  /* Evita que se monte el logo */
-  .logo,
-  .brand {
-    flex: 1 1 100%;
-    text-align: center;
-  }
-
-  /* Botón flotante de WhatsApp */
-  .whatsapp-float,
-  .whatsapp-btn {
-    width: calc(100% - 24px);
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
-    border-radius: 14px;
-  }
-
-  /* Da espacio abajo para que no tape contenido */
-  body {
-    padding-bottom: 90px;
-  }
-}
-
+      /* Da espacio abajo para que no tape contenido */
+      body {
+        padding-bottom: 90px;
+      }
     }
   </style>
 </head>
@@ -768,7 +784,13 @@
         <a href="#pago">Medios de pago</a>
       </nav>
 
-      <div style="display:flex; gap:10px; align-items:center;">
+      <!-- ✅ Botón menú móvil -->
+      <button class="menuBtn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false">
+        ☰ Menú
+      </button>
+
+      <!-- ✅ Acciones desktop (igual que las tuyas) -->
+      <div class="headerActions" style="display:flex; gap:10px; align-items:center;">
         <a class="btn ghost" href="#patrocinios">Ver opciones</a>
         <a class="btn primary" href="#pago">
           <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="color:#fff;">
@@ -777,6 +799,23 @@
           </svg>
           Apoyar ahora
         </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Menú desplegable móvil -->
+  <div class="mobileMenu" id="mobileMenu" aria-label="Menú móvil">
+    <div class="mmInner">
+      <a href="#quien"><span>¿Quién es?</span><small>Perfil</small></a>
+      <a href="#programa"><span>Programa Europa</span><small>2026</small></a>
+      <a href="#inversion"><span>Inversión</span><small>Detalles</small></a>
+      <a href="#patrocinios"><span>Patrocinios</span><small>Opciones</small></a>
+      <a href="#fondo"><span>Bolsa millonaria</span><small>Fondo</small></a>
+      <a href="#pago"><span>Medios de pago</span><small>Nequi / WhatsApp</small></a>
+
+      <div class="mmRow">
+        <a href="#patrocinios"><span>Ver opciones</span><small>Planes</small></a>
+        <a href="#pago"><span>Apoyar ahora</span><small>Donación</small></a>
       </div>
     </div>
   </div>
@@ -819,6 +858,7 @@ Si eres patrocinador, puedes enviarnos tu logo para incorporarlo en esta página
             <span class="pill">Transparencia y trazabilidad</span>
           </div>
         </div>
+
        <div class="heroGallery">
          <div class="gItem"><img src="imagenes/foto1.jpg" alt="Foto 1"></div>
             <div class="gItem"><img src="imagenes/foto2.jpg" alt="Foto 2"></div>
@@ -828,7 +868,7 @@ Si eres patrocinador, puedes enviarnos tu logo para incorporarlo en esta página
           <div class="gItem"><img src="imagenes/foto6.jpg" alt="Foto 6"></div>
           </div>
            <div style="margin-top:14px;">
- 
+
   <aside class="card heroSide" aria-label="Resumen rápido">
           <div class="sideTitle">
             <h3>Resumen ejecutivo</h3>
@@ -872,6 +912,7 @@ Posición de juego: Extremo izquierdo.</span>
         </aside>
       </div>
     </div>
+
 <div class="heroGallery">
          <div class="gItem"><img src="imagenes/foto7.jpg" alt="Foto 7"></div>
             <div class="gItem"><img src="imagenes/foto2.jpg" alt="Foto 8"></div>
@@ -906,7 +947,7 @@ Posición de juego: Extremo izquierdo.</span>
         <div class="box">
           <h3>Oportunidad actual</h3>
           <p>
-          
+
           </p>
           <div class="li" style="margin-top:12px;">
             <div>
@@ -1106,7 +1147,7 @@ En este contexto, los fondos recaudados son responsabilidad directa del jugador 
     </section>
 
     <!-- FONDO INCENTIVO -->
-    <section id="fondo Deportivo">
+    <section id="fondo">
       <div class="sectionHeader">
         <div>
           <h2>Bolsa Millonaria (fondo Deportivo) </h2>
@@ -1198,58 +1239,50 @@ Se recomienda leer detenidamente toda la información presentada antes de realiz
       </div>
     </div>
 
-    <!-- ✅ NUEVO: PATROCINADORES OFICIALES (BANNERS / LOGOS) -->
+    <!-- ✅ PATROCINADORES OFICIALES (LOGOS GIGANTES) -->
     <section class="sponsors" id="patrocinadores-oficiales">
       <h2 class="sponsorsTitle">PATROCINADORES OFICIALES</h2>
       <p class="sponsorsSub">Gracias por creer, sembrar y construir futuro con el Proyecto JF9.</p>
 
       <div class="sponsorCard">
-  <img src="logos/patrocinador1.png" alt="Logo Patrocinador 1"
-    onerror="this.remove();">
-          </div>
-          <<div class="sponsorCard">
-  <img src="logos/patrocinador2.png" alt="Logo Patrocinador 2"
-    onerror="this.remove();">
-</div>
+        <img src="logos/patrocinador1.png" alt="Logo Patrocinador 1" onerror="this.remove();">
+      </div>
 
-          <div class="sponsorCard">
-  <img src="logos/patrocinador3.png" alt="Logo Patrocinador3"
-    onerror="this.remove();">
-</div>
-        <div class="sponsorCard">
-  <img src="logos/patrocinador4.png" alt="Logo Patrocinador 4"
-    onerror="this.remove();">
-</div>
+      <div class="sponsorCard">
+        <img src="logos/patrocinador2.png" alt="Logo Patrocinador 2" onerror="this.remove();">
+      </div>
 
-          <div class="sponsorCard">
-  <img src="logos/patrocinador5.png" alt="Logo Patrocinador 5"
-    onerror="this.remove();">
-</div>
+      <div class="sponsorCard">
+        <img src="logos/patrocinador3.png" alt="Logo Patrocinador3" onerror="this.remove();">
+      </div>
 
-         <div class="sponsorCard">
-  <img src="logos/patrocinador6.png" alt="Logo Patrocinador 6"
-    onerror="this.remove();">
-</div>
+      <div class="sponsorCard">
+        <img src="logos/patrocinador4.png" alt="Logo Patrocinador 4" onerror="this.remove();">
+      </div>
 
-          <div class="sponsorCard">
-  <img src="logos/patrocinador7.png" alt="Logo Patrocinador 7"
-    onerror="this.remove();">
-</div>
+      <div class="sponsorCard">
+        <img src="logos/patrocinador5.png" alt="Logo Patrocinador 5" onerror="this.remove();">
+      </div>
 
-          <div class="sponsorCard">
-  <img src="logos/patrocinador8.png" alt="Logo Patrocinador 8"
-    onerror="this.remove();">
-</div>
+      <div class="sponsorCard">
+        <img src="logos/patrocinador6.png" alt="Logo Patrocinador 6" onerror="this.remove();">
+      </div>
 
-          <div class="sponsorCard">
-  <img src="logos/patrocinador9.png" alt="Logo Patrocinador 9"
-    onerror="this.remove();">
-</div>
+      <div class="sponsorCard">
+        <img src="logos/patrocinador7.png" alt="Logo Patrocinador 7" onerror="this.remove();">
+      </div>
 
-        <div class="sponsorCard">
-  <img src="logos/patrocinador10.png" alt="Logo Patrocinador 10"
-    onerror="this.remove();">
-</div>
+      <div class="sponsorCard">
+        <img src="logos/patrocinador8.png" alt="Logo Patrocinador 8" onerror="this.remove();">
+      </div>
+
+      <div class="sponsorCard">
+        <img src="logos/patrocinador9.png" alt="Logo Patrocinador 9" onerror="this.remove();">
+      </div>
+
+      <div class="sponsorCard">
+        <img src="logos/patrocinador10.png" alt="Logo Patrocinador 10" onerror="this.remove();">
+      </div>
     </section>
 
     <!-- FOOTER -->
@@ -1317,9 +1350,36 @@ Se recomienda leer detenidamente toda la información presentada antes de realiz
         if(!target) return;
         e.preventDefault();
         target.scrollIntoView({behavior:"smooth", block:"start"});
+        // ✅ cierra menú móvil al navegar
+        const mm = document.getElementById("mobileMenu");
+        const btn = document.getElementById("menuBtn");
+        if(mm && mm.classList.contains("open")){
+          mm.classList.remove("open");
+          btn.setAttribute("aria-expanded","false");
+        }
       });
     });
+
+    // ✅ Toggle menú móvil
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    if(menuBtn && mobileMenu){
+      menuBtn.addEventListener("click", ()=>{
+        const open = mobileMenu.classList.toggle("open");
+        menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      // Cierra si tocan fuera
+      document.addEventListener("click",(e)=>{
+        if(!mobileMenu.classList.contains("open")) return;
+        const inside = mobileMenu.contains(e.target) || menuBtn.contains(e.target);
+        if(!inside){
+          mobileMenu.classList.remove("open");
+          menuBtn.setAttribute("aria-expanded","false");
+        }
+      });
+    }
   </script>
 </body>
 </html>
+
 
