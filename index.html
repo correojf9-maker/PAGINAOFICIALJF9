@@ -678,6 +678,48 @@
   object-fit: cover;
   object-position: center;
 }
+/* ===== AJUSTES SOLO PARA CELULAR ===== */
+@media (max-width: 768px) {
+
+  /* Header y botones */
+  header,
+  .topBar,
+  .headerActions {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* Botón Apoyar ahora */
+  .btn-primary,
+  .btn-cta,
+  button {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  /* Evita que se monte el logo */
+  .logo,
+  .brand {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  /* Botón flotante de WhatsApp */
+  .whatsapp-float,
+  .whatsapp-btn {
+    width: calc(100% - 24px);
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border-radius: 14px;
+  }
+
+  /* Da espacio abajo para que no tape contenido */
+  body {
+    padding-bottom: 90px;
+  }
+}
 
     }
   </style>
@@ -1280,4 +1322,3 @@ Se recomienda leer detenidamente toda la información presentada antes de realiz
   </script>
 </body>
 </html>
-
