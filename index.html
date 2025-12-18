@@ -1,91 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>PAGINA OFICIAL JF9</title>
-
-  <style>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+   <title>PAGINA OFICIAL JF9</title>
+   <style>
     :root{
       --bg:#f6f8fe;
-      --card:#ffffff;
+      --surface:#ffffff;
       --text:#0f1b2d;
       --muted:#5a6b82;
       --line:rgba(15,27,45,.10);
-      --primary:#1f6feb;
+      --primary:#1e88e5;
       --primary-dark:#1565c0;
-      --primary-soft:#e3f2fd;
-      --success:#19c37d;
-      --shadow: 0 10px 30px rgba(0,0,0,.08);
-      --radius: 18px;
+      --primary-soft:rgba(30,136,229,.12);
+      --accent:#f2b705;
+      --success:#1cc57b;
+      --radius:16px;
+      --radius2:22px;
+      --shadow: 0 10px 28px rgba(0,0,0,.08);
     }
 
     *{ box-sizing:border-box; }
-    html,body{ margin:0; padding:0; background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
     a{ color:inherit; text-decoration:none; }
 
-    /* Topbar */
     .topbar{
       position: sticky;
       top: 0;
-      z-index: 1000;
-      background: rgba(246,248,254,.85);
-      backdrop-filter: blur(12px);
+      z-index: 999;
+      backdrop-filter: blur(10px);
+      background: rgba(246,248,254,.86);
       border-bottom: 1px solid rgba(15,27,45,.08);
     }
     .topbar .inner{
-      max-width: 1200px;
+      max-width: 1180px;
       margin: 0 auto;
       padding: 12px 18px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap: 16px;
+      gap: 14px;
     }
+
     .brand{
       display:flex;
       align-items:center;
       gap: 10px;
       font-weight: 900;
-      letter-spacing: .2px;
+      letter-spacing:.2px;
+      color: rgba(15,27,45,.88);
     }
-    .brand .badge{
+    .badge{
       display:inline-flex;
       align-items:center;
-      justify-content:center;
-      width: 28px;
-      height: 28px;
-      border-radius: 10px;
-      background: rgba(255,193,7,.18);
-      border: 1px solid rgba(255,193,7,.35);
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,27,45,.10);
+      background: rgba(255,255,255,.75);
+      font-weight: 850;
+      color: rgba(15,27,45,.78);
+      font-size: 12px;
     }
-    .brand span{
-      font-size: 15px;
-      line-height: 1.1;
-    }
-    .brand span b{
-      color:#ff9800;
-    }
+
+    .icon{ width:18px; height:18px; }
 
     .nav{
       display:flex;
       align-items:center;
       gap: 14px;
-      font-weight: 750;
-      color: rgba(15,27,45,.72);
-      font-size: 13.5px;
       padding: 8px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(15,27,45,.08);
       background: rgba(255,255,255,.75);
+      border: 1px solid rgba(15,27,45,.08);
+      font-weight: 800;
+      color: rgba(15,27,45,.70);
+      font-size: 13px;
     }
     .nav a{
       padding: 6px 9px;
       border-radius: 999px;
       transition: .18s ease;
+      white-space: nowrap;
     }
     .nav a:hover{
-      background: rgba(31,111,235,.10);
+      background: rgba(30,136,229,.10);
       color: rgba(15,27,45,.92);
     }
 
@@ -98,64 +103,76 @@
       border-radius: 999px;
       border: 1px solid rgba(15,27,45,.12);
       background: rgba(255,255,255,.85);
-      font-weight: 850;
+      font-weight: 900;
       font-size: 13.5px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.06);
-      transition: transform .16s ease, background .16s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,.06);
+      transition: transform .16s ease;
       white-space: nowrap;
     }
     .btn:hover{ transform: translateY(-1px); }
     .btn.primary{
       border: none;
-      color: #fff;
+      color:#fff;
       background: linear-gradient(135deg, #2b7bff, #f2b705);
       padding: 11px 18px;
-      box-shadow: 0 10px 30px rgba(31,111,235,.25);
+      box-shadow: 0 10px 30px rgba(30,136,229,.20);
     }
     .btn.ghost{
       background: rgba(255,255,255,.75);
     }
 
-    /* Layout */
     .wrap{
-      max-width: 1200px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 20px 18px 110px;
+      padding: 18px;
+    }
+
+    .heroGrid{
       display:grid;
-      grid-template-columns: 1.12fr .88fr;
+      grid-template-columns: 1.15fr .85fr;
       gap: 18px;
+      align-items: stretch;
     }
-
+    @media (max-width: 920px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .nav{ display:none; }
+      .headerActions{ display:none !important; } /* ✅ FIX CELULAR (NO TOCA NADA MÁS) */
+    }
     .card{
-      background: var(--card);
-      border: 1px solid rgba(15,27,45,.08);
-      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
       box-shadow: var(--shadow);
-      overflow:hidden;
     }
-    .card.pad{ padding: 18px; }
-
     .heroMain{
+      padding: 26px 24px;
       position: relative;
-      padding: 22px;
-      background:
-        radial-gradient(1200px 500px at -50% -30%, rgba(25,195,125,.16), transparent 60%),
-        radial-gradient(900px 500px at 120% 0%, rgba(31,111,235,.14), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,1), rgba(255,255,255,.92));
+      overflow: hidden;
     }
+    .heroMain:before{
+      content:"";
+      position:absolute;
+      inset: 0;
+      background:
+        radial-gradient(900px 450px at -10% -20%, rgba(28,197,123,.16), transparent 60%),
+        radial-gradient(900px 450px at 120% 0%, rgba(30,136,229,.14), transparent 55%);
+      pointer-events:none;
+    }
+    .heroMain > *{ position: relative; z-index:1; }
+
     .kicker{
       display:flex;
       align-items:center;
       gap: 10px;
-      font-weight: 800;
+      font-weight: 900;
       color: rgba(15,27,45,.70);
+      margin-bottom: 8px;
     }
-    .kicker .star{ font-size: 18px; color:#ffb300; }
     h1{
-      margin: 10px 0 8px;
-      font-size: 42px;
-      line-height: 1.05;
-      letter-spacing: -.6px;
+      margin: 0 0 10px;
+      font-size: 44px;
+      line-height: 1.04;
+      letter-spacing: -.7px;
     }
     .lead{
       margin: 0;
@@ -168,19 +185,20 @@
 
     .quote{
       margin-top: 14px;
-      border: 1px dashed rgba(255,193,7,.45);
+      border: 1px dashed rgba(242,183,5,.55);
       border-radius: 16px;
-      padding: 14px 14px 14px 16px;
+      padding: 14px 16px;
       display:flex;
       gap: 12px;
       align-items:flex-start;
-      background: rgba(255,193,7,.10);
+      background: rgba(242,183,5,.10);
     }
     .quote .mark{
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 900;
       color: #c28b00;
       line-height: 1;
+      margin-top: -1px;
     }
     .quote b{
       font-size: 17px;
@@ -205,94 +223,90 @@
       padding: 8px 12px;
       border-radius: 999px;
       border: 1px solid rgba(15,27,45,.10);
-      background: rgba(25,195,125,.08);
+      background: rgba(28,197,123,.08);
       color: rgba(15,27,45,.72);
-      font-weight: 750;
+      font-weight: 850;
       font-size: 12.5px;
     }
 
-    /* Right column */
-    .asideHead{
+    .aside{
+      padding: 18px;
+    }
+    .asideHeader{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap: 12px;
-      padding: 14px 16px;
-      border-bottom: 1px solid rgba(15,27,45,.08);
-      background: linear-gradient(180deg, rgba(31,111,235,.06), rgba(255,255,255,1));
+      gap: 10px;
+      margin-bottom: 12px;
     }
-    .asideHead .tag{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      font-weight: 900;
-      color: rgba(15,27,45,.78);
-      font-size: 13px;
+    .asideHeader .title{
+      font-weight: 950;
+      font-size: 18px;
+    }
+    .chip{
       padding: 7px 10px;
       border-radius: 999px;
       border: 1px solid rgba(15,27,45,.10);
-      background: rgba(255,255,255,.9);
-    }
-    .asideHead .year{
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(15,27,45,.10);
-      background: rgba(255,255,255,.9);
+      background: rgba(255,255,255,.85);
       font-weight: 900;
       color: rgba(15,27,45,.70);
     }
 
-    .asideBody{ padding: 14px 16px 16px; }
     .stack{ display:flex; flex-direction:column; gap: 12px; }
-
     .miniCard{
       border: 1px solid rgba(15,27,45,.10);
       border-radius: 16px;
       background: rgba(255,255,255,.92);
-      padding: 14px 14px;
+      padding: 14px;
     }
     .miniCard h3{
-      margin: 0 0 6px;
-      font-size: 22px;
+      margin:0 0 6px;
+      font-size: 20px;
       letter-spacing: -.2px;
     }
     .miniCard p{
-      margin: 0;
+      margin:0;
       color: rgba(15,27,45,.72);
       font-weight: 650;
       line-height: 1.55;
     }
 
-    /* Sections below */
     .section{
-      grid-column: 1 / -1;
+      margin-top: 18px;
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 18px;
     }
+    @media (max-width: 920px){
+      .section{ grid-template-columns: 1fr; }
+    }
+
+    .section .card{ padding: 18px; }
     .section h2{
-      margin: 0 0 10px;
+      margin:0 0 10px;
       font-size: 26px;
       letter-spacing: -.3px;
     }
     .section p{
-      margin: 0;
+      margin:0;
       color: rgba(15,27,45,.72);
       font-weight: 650;
       line-height: 1.6;
     }
 
-    /* Sponsor grid */
     .sponsorGrid{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
       margin-top: 12px;
     }
+    @media (max-width: 920px){
+      .sponsorGrid{ grid-template-columns: repeat(2, 1fr); }
+    }
     .sponsorCard{
       border: 1px dashed rgba(15,27,45,.22);
       border-radius: 16px;
-      background: linear-gradient(180deg, rgba(31,111,235,.06), rgba(255,255,255,1));
+      background: linear-gradient(180deg, rgba(30,136,229,.06), rgba(255,255,255,1));
       padding: 14px;
       min-height: 78px;
       display:flex;
@@ -328,7 +342,6 @@
       font-weight: 650;
     }
 
-    /* Floating WhatsApp */
     .waFloat{
       position: fixed;
       right: 18px;
@@ -343,184 +356,108 @@
       border-radius: 999px;
       background: #1cc57b;
       color: #fff;
-      font-weight: 900;
+      font-weight: 950;
       border: none;
-      box-shadow: 0 14px 34px rgba(25,195,125,.35);
+      box-shadow: 0 14px 34px rgba(28,197,123,.35);
     }
     .waBtn small{
       opacity: .95;
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: .4px;
     }
 
-    /* Responsive */
-    @media (max-width: 980px){
-      .wrap{ grid-template-columns: 1fr; }
-      .section{ grid-template-columns: 1fr; }
-      h1{ font-size: 36px; }
+    /* Video full width (si ya lo tienes en tu código, esto no lo elimina) */
+    .videoFull{
+      width:100%;
+      display:block;
     }
-
-    @media (max-width: 920px){
-      .nav{ display:none; }
-      .headerActions{ display:none !important; }
-      .brand span{ white-space: normal; }
-      .topbar .inner{ gap: 10px; }
-    }
-
-    @media (max-width: 520px){
-      h1{ font-size: 32px; }
-      .btn{ width:100%; }
-      .ctaRow{ flex-direction:column; }
-      .sponsorGrid{ grid-template-columns: repeat(2, 1fr); }
-    }
-
-    /* ===== AJUSTES SOLO PARA CELULAR ===== */
-    @media (max-width: 768px) {
-
-      /* Header y botones */
-      header,
-      .topBar,
-      .headerActions {
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      /* Botón Apoyar ahora */
-      .btn-primary,
-      .btn-cta,
-      button {
-        width: 100%;
-        max-width: 100%;
-        justify-content: center;
-      }
-
-      /* Evita que se monte el logo */
-      .logo,
-      .brand {
-        flex: 1 1 100%;
-        text-align: center;
-      }
-
-      /* Botón flotante de WhatsApp */
-      .whatsapp-float,
-      .whatsapp-btn {
-        width: calc(100% - 24px);
-        left: 12px;
-        right: 12px;
-        bottom: 12px;
-        border-radius: 14px;
-      }
-
-      /* Da espacio abajo para que no tape contenido */
-      body {
-        padding-bottom: 90px;
-      }
-    }
-
-    /* ===== GALERÍA (solo para llenar el espacio en blanco del panel izquierdo) ===== */
-    .heroGallery{
-      margin-top: 14px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    @media (max-width: 920px){
-      .heroGallery{ grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 520px){
-      .heroGallery{ grid-template-columns: 1fr; }
-    }
-
-    .heroGallery .gItem{
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      overflow: hidden;
-      background: #FBFCFF;
-      aspect-ratio: 1 / 1;
-    }
-
-    .heroGallery .gItem img{
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      object-position: center;
-    }
-  </style>
+   </style>
 </head>
 
 <body>
 
-  <div class="topbar">
+  <div class="topbar" id="top">
     <div class="inner">
-      <div class="brand">
-        <span class="badge">⬢</span>
-        <span>Proyecto Deportivo <b>JF9</b></span>
+      <div class="brand" aria-label="Marca">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2l8.5 5v10L12 22 3.5 17V7L12 2z" stroke="currentColor" stroke-width="2" />
+          <path d="M12 22V12" stroke="currentColor" stroke-width="2"/>
+          <path d="M20.5 7L12 12 3.5 7" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span>Proyecto Deportivo <span style="color:var(--accent);">JF9</span></span>
+        <span class="badge">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Información institucional
+        </span>
       </div>
 
-      <nav class="nav">
+      <nav class="nav" aria-label="Navegación">
         <a href="#quien">¿Quién es?</a>
-        <a href="#europa">Programa Europa</a>
+        <a href="#programa">Programa Europa</a>
         <a href="#inversion">Inversión</a>
         <a href="#patrocinios">Patrocinios</a>
         <a href="#fondo">Bolsa millonaria</a>
         <a href="#pago">Medios de pago</a>
       </nav>
 
+      <!-- ✅ SOLO CAMBIO: agregué class="headerActions" (NO se borró nada) -->
       <div class="headerActions" style="display:flex; gap:10px; align-items:center;">
         <a class="btn ghost" href="#patrocinios">Ver opciones</a>
-        <a class="btn primary" href="#pago">💳 Apoyar ahora</a>
+        <a class="btn primary" href="#pago">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="color:#fff;">
+            <path d="M20 7H4a2 2 0 0 0-2 2v7a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V9a2 2 0 0 0-2-2z" stroke="currentColor" stroke-width="2"/>
+            <path d="M2 10h20" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          Apoyar ahora
+        </a>
       </div>
     </div>
   </div>
 
   <div class="wrap">
 
-    <div class="card heroMain">
-      <div class="kicker"><span class="star">☆</span> Formación y compromiso.</div>
-      <h1>Juan Felipe Silva Ortiz (JF9)</h1>
+    <div class="heroGrid">
+      <div class="card heroMain">
+        <div class="kicker">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="color:#ffb300;">
+            <path d="M12 2l2.9 6 6.6.6-5 4.4 1.6 6.5L12 16.9 5.9 19.5 7.5 13 2.5 8.6 9.1 8 12 2z" fill="currentColor"/>
+          </svg>
+          Formación y compromiso.
+        </div>
+        <h1>Juan Felipe Silva Ortiz (JF9)</h1>
+        <p class="lead">
+          Esta página tiene como propósito que las personas y patrocinadores conozcan a profundidad el Proyecto JF9.
+          Aquí encontrarás de forma clara y transparente el destino de las donaciones, los objetivos, los planes y demás,
+          recuerda que si eres patrocinador puedes enviarnos tu logo para que aparezca en esta pagina.
+        </p>
 
-      <p class="lead">
-        Esta página tiene como propósito que las personas y patrocinadores conozcan a profundidad el Proyecto JF9. Aquí encontrarás de forma clara y transparente el destino de las donaciones, los objetivos, los planes de patrocinio y toda la información esencial del proceso. Si eres patrocinador, puedes enviarnos tu logo para incorporarlo en esta página como parte del reconocimiento y visibilidad de tu apoyo.
-      </p>
+        <div class="quote">
+          <div class="mark">❝</div>
+          <div><b>“Y aunque tu principio haya sido pequeño,Tu postrer estado será muy grande” ;¡Es una Promesa!.</b></div>
+        </div>
 
-      <div class="quote">
-        <div class="mark">❝</div>
-        <div>
-          <b>“Y aunque tu principio haya sido pequeño, Tu postrer estado será muy grande”; ¡Es una Promesa!.</b>
+        <div class="ctaRow">
+          <a class="btn primary" href="#pago">Realizar aporte</a>
+          <a class="btn ghost" href="#programa">Ver programa en Europa</a>
+          <a class="btn ghost" href="#inversion">Ver inversión</a>
+        </div>
+
+        <div class="miniRow">
+          <span class="pill">Dossier institucional disponible</span>
+          <span class="pill">Transparencia y trazabilidad</span>
         </div>
       </div>
 
-      <div class="ctaRow">
-        <a class="btn primary" href="#pago">Realizar aporte</a>
-        <a class="btn ghost" href="#europa">Ver programa en Europa</a>
-        <a class="btn ghost" href="#inversion">Ver inversión</a>
-      </div>
+      <div class="card aside">
+        <div class="asideHeader">
+          <div class="title">Resumen ejecutivo</div>
+          <div class="chip">2026</div>
+        </div>
 
-      <div class="miniRow">
-        <span class="pill">Dossier institucional disponible</span>
-        <span class="pill">Transparencia y trazabilidad</span>
-      </div>
-
-      <div class="heroGallery">
-        <div class="gItem"><img src="imagenes/foto1.jpg" alt="Foto 1"></div>
-        <div class="gItem"><img src="imagenes/foto2.jpg" alt="Foto 2"></div>
-        <div class="gItem"><img src="imagenes/foto3.jpg" alt="Foto 3"></div>
-        <div class="gItem"><img src="imagenes/foto4.jpg" alt="Foto 4"></div>
-        <div class="gItem"><img src="imagenes/foto5.jpg" alt="Foto 5"></div>
-        <div class="gItem"><img src="imagenes/foto6.jpg" alt="Foto 6"></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="asideHead">
-        <div class="tag">📌 Resumen ejecutivo</div>
-        <div class="year">2026</div>
-      </div>
-      <div class="asideBody">
         <div class="stack">
-
           <div class="miniCard">
             <h3>Formación sólida</h3>
             <p>Más de 7 años de preparación deportiva, disciplina y rendimiento académico.</p>
@@ -528,63 +465,36 @@
 
           <div class="miniCard">
             <h3>Unidades de entrenamiento</h3>
-            <p>1400 se entienden como unidades de formación, donde cada unidad equivale a 60 minutos. Es decir, en tiempo total estamos hablando de 84.000 minutos de formación (equivalentes a 1.400 horas), lo cual representa un volumen de entrenamiento sólido y altamente significativo para un proceso de desarrollo y alto rendimiento.</p>
-          </div>
-
-          <div class="miniCard">
-            <h3>Habilidades técnicas</h3>
-            <p>Habilidades blandas y neurodeportivo por juego, biotipo idoneo, facilidad de adaptación,.</p>
+            <p>1400.Se entienden como una unidad un espacio de tiempo de 60 minutos. es decir que si lo llevamos a tiempo estamos hablando de 86,400 minutos de formación, lo que es un promedio importante aopto para</p>
           </div>
 
           <div class="miniCard">
             <h3>Competencias</h3>
-            <p>Participación activa en torneos locales y regionales con el Club Cali Leones, incluyendo: Liga Start, Liga Next Generation, Copa Phex, Copa Huberto Arias (1.ª y 2.ª edición) y la Liga del Valle 2025, torneo en el que el equipo se consagró campeón. Posición de juego: Extremo izquierdo.</p>
+            <p>Partticipación en torneos locales con el Club Cali Leones, liga start,Liga nextt Generation, Copa Phex, Huberto Arias 1A edicion,Huberto Arias 2A edicion y Ultima participacion del 2025 Liga del valle Donde tterminaron de campeones, posicion de Juego Extremo Izquierdo</p>
           </div>
 
           <div class="miniCard">
-            <p><b>Nota de transparencia:</b>Juan Felipe Silva se ha formado bajo el principio tripartito del ser, lo que le ha permitido, como deportista, comprender la importancia de una formación integral: física, mental y espiritual. Este enfoque se refleja tanto en su desarrollo deportivo como en sus compromisos escolares, donde ha mantenido de manera constante altos estándares de calidad y excelencia académica. En el campo deportivo destaca su resiliencia, lucha y capacidad evolutiva cuando algo en el juego no sale bien, buscando siempre mejorar, con un amplio potencial de crecimiento dispuesto para trabajar en su formación.</p>
+            <p><b>Nota de transparencia:</b> Juan felipe silva se a formado en el principio triparito del ser lo cual le permite como deporttista enttender la importtancia de la formacion fisica, espiritual y mental y en sus compromisis escolares ha sostenido la calidad y la excelencia.</p>
           </div>
-
         </div>
       </div>
     </div>
 
-    <div class="section" id="quien">
-      <div class="card pad">
-        <h2>Contacto oficial</h2>
-        <p><b>WhatsApp:</b> +57 323 399 2683<br>
-           <b>Nequi:</b> 323 399 2683 (Juan Felipe Silva Ortiz)</p>
-        <div class="ctaRow" style="margin-top:12px;">
-          <a class="btn primary" href="https://wa.me/573233992683" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-          <a class="btn ghost" href="#top">Volver arriba</a>
-        </div>
-      </div>
-
-      <div class="card pad">
-        <h2>Transparencia</h2>
-        <p>Este sitio presenta información institucional del proyecto. El objetivo principal de la recaudación de fondos para cubrir gastos del proceso del jugador. La Bolsa Millonaria es un incentivo solidario basado en un resultado público y verificable.</p>
-        <div class="miniCard" style="margin-top:12px;">
-          <p><b>Recomendación:</b> guarda tu comprobante y confirma por WhatsApp para la asignación correspondiente.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="section" id="europa">
-      <div class="card pad">
-        <h2>Programa Europa</h2>
+    <div class="section" id="programa">
+      <div class="card">
+        <h2>Estancia y visorías en Europa</h2>
         <p>Ha sido seleccionado para participar en <b>visorías de contratación en Europa</b>. Este tipo de procesos permite que el deportista aprenda modalidades de juego y tecnicas diferentes, las cuales se adaptan a su habilidad natural lo que le da un razgo unico que lo puede catapultar; ademas ofrece exposición real ante metodologías profesionales y escenarios de evaluación internacionales.</p>
       </div>
 
-      <div class="card pad" id="inversion">
+      <div class="card" id="inversion">
         <h2>Inversión</h2>
         <p>Es muy importante resaltar que JF9 cuenta con un equipo de personas como sus padres, familiares, amigos y profesionales conel proposito, de acompañar su carrera Profesional por ello los fondos recaudados es responsabilidad de el jugador y sus tutores legales, quienes son los que a adquirido el compromiso con los patrocinadores, el club al que va a ser parte, se menciona como referencia y soporte seri de la información pero no ttienen ningun compromiso ni responsabilidad con los recursos que se recaudan ya que el roll de ellos es garantizar el cumplimiento de los servicios y el acuerdo una vez se cumplan con los compromisos economicos que garanticen la inscripcion.</p>
       </div>
     </div>
 
     <div class="section" id="patrocinios">
-      <div class="card pad" style="grid-column:1/-1;">
-        <h2 style="text-align:center; font-size:30px; margin-bottom:8px;">PATROCINADORES OFICIALES</h2>
-
+      <div class="card">
+        <h2 style="text-align:center;">PATROCINADORES OFICIALES</h2>
         <div class="sponsorGrid">
           <div class="sponsorCard"><span class="sponsorPlaceholder">ESPACIO DISPONIBLE</span></div>
           <div class="sponsorCard"><span class="sponsorPlaceholder">ESPACIO DISPONIBLE</span></div>
@@ -595,27 +505,27 @@
           <div class="sponsorCard"><span class="sponsorPlaceholder">ESPACIO DISPONIBLE</span></div>
           <div class="sponsorCard"><span class="sponsorPlaceholder">ESPACIO DISPONIBLE</span></div>
         </div>
-
-        <div class="sponsorNote">
-          Si eres patrocinador, envía tu logo para incorporarlo en esta página como parte del reconocimiento y visibilidad de tu apoyo.
-        </div>
+        <div class="sponsorNote">Si eres patrocinador, puedes enviarnos tu logo para incorporarlo en esta página.</div>
       </div>
     </div>
 
     <div class="section" id="pago">
-      <div class="card pad" style="grid-column:1/-1;">
+      <div class="card">
         <h2>Medios de pago</h2>
-        <p><b>Nequi:</b> 3233992683<br>
-           <b>A nombre de:</b> JUAN FELIPE SILVA ORTIZ<br>
-           <b>Documento:</b> 1110046778</p>
-
+        <p>
+          <b>Nequi:</b> 323 399 2683 <br>
+          <b>A nombre de:</b> JUAN FELIPE SILVA ORTIZ <br>
+          <b>Documento:</b> 1110046778
+        </p>
         <div class="miniCard" style="margin-top:12px;">
           <p><b>Participación voluntaria:</b> este proyecto es una iniciativa de apoyo al deporte limpio y al desarrollo del talento joven. Se recomienda leer la información completa antes de aportar.</p>
         </div>
+      </div>
 
-        <p style="margin-top:16px; text-align:center; color:rgba(15,27,45,.65); font-weight:700;">
-          © 2025 Proyecto Deportivo JF9. “Creer también es construir futuro”.
-        </p>
+      <div class="card" id="quien">
+        <h2>Contacto oficial</h2>
+        <p><b>WhatsApp:</b> +57 323 399 2683<br>
+          <b>Nequi:</b> 323 399 2683 (Juan Felipe Silva Ortiz)</p>
       </div>
     </div>
 
@@ -623,11 +533,15 @@
 
   <div class="waFloat">
     <a class="waBtn" href="https://wa.me/573233992683" target="_blank" rel="noopener">
-      💬 <span>WhatsApp</span> <small>APORTE/INFORMACIÓN</small>
+      <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="color:#fff;">
+        <path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-5.1A8.5 8.5 0 1 1 21 11.5z" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      WhatsApp <small>APORTE/INFORMACIÓN</small>
     </a>
   </div>
 
 </body>
 </html>
+
 
 
